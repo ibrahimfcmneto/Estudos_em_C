@@ -1,3 +1,0 @@
-#arquivo para testar o github
-#agora editei esse arquivo no github
-#mandei esse arquivo mudado denovo para o github
