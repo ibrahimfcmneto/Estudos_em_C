@@ -11,7 +11,7 @@ int main()
     printf("Endereço da variavel1: %p\n", (void*)endereco1);
     printf("Endereço da variavel2: %p\n", (void*)endereco2);
 
-    int maior_endereco = endereco1;
+    int *maior_endereco = endereco1;
 
     if (endereco2 > endereco1)
     {
