@@ -190,7 +190,7 @@ double avaliarPosfixa(Fila *posfixa) {
     return desempilhar(&valores);
 }
 
-// ------------------ Principal ------------------
+// ------------------ Principal -------------------
 
 int main() {
     char expressao[MAX];
