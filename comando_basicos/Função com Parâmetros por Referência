@@ -1,0 +1,39 @@
+/*
+Função com Parâmetros por Referência
+Crie um programa que contenha uma função que receba por parâmetro dois números
+inteiros A e B. A função deverá calcular a soma entre eles e armazenar o resultado na
+variável A. Esta função não deve ter um valor de retorno (void), mas deverá modificar o
+valor do primeiro parâmetro. Imprima os valores de A e B na função principal (main).
+*/
+
+#include <stdio.h>
+
+void soma_e_armazena_na_primeira_variavel(int *x, int *y)
+{
+    
+    *x = *x + *y;
+    
+};
+
+
+int main()
+{
+    int *x;
+    int *y;
+    
+    int i,j;
+    
+    x = &i;
+    y = &j;
+    
+    printf("Primeiro valor: ");
+    scanf("%d", &i);
+    printf("Segundo valor: ");
+    scanf("%d", &j);
+    
+    soma_e_armazena_na_primeira_variavel(x, y);
+    
+    printf("primeira variavel: %d, segunda variavel: %d", *x, *y);
+
+    return 0;
+}
