@@ -1,0 +1,45 @@
+/*
+Função para Retornar Maior e Menor Valor
+Faça um programa que leia dois valores inteiros e chame uma função que receba esses
+dois valores e retorne o maior valor na primeira variável e o menor na segunda. Escreva
+o conteúdo das duas variáveis na tela.
+*/
+
+#include <stdio.h>
+
+void retorna_maio_e_menor_valor(int *x, int *y)
+{
+    int t;
+    if(*y > *x) //quer dizer que o segundo valor é maior que o Primeiro
+    {
+        //trocando os vetores de posição
+        t = *x;
+        *x = *y;
+        *y = t;
+    };
+    
+    
+};
+
+
+int main()
+{
+    int *x;
+    int *y;
+    
+    int i, j;
+    
+    printf("Primeiro valor 'x': ");
+    scanf("%d", &i);
+    printf("Segundo valor 'y': ");
+    scanf("%d", &j);
+    
+    x = &i;
+    y = &j;
+    
+    retorna_maio_e_menor_valor(x, y);
+    
+    printf("ponteiro x: %d e ponteiro y: %d", *x, *y);
+    
+    return 0;
+}
