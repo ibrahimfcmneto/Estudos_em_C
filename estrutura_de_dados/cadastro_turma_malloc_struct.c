@@ -19,7 +19,7 @@ void mostrar_alunos(struct Aluno *turma, int qtd_alunos)
     {
         printf("nome: %s\n", turma[i].nome);
         printf("RA: %d\n", turma[i].ra);
-        printf("Nota: %f\n", turma[i].nota);
+        printf("Nota: %f\n", turma[i].nota); 
     }
 }
 
