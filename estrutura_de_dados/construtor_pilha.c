@@ -39,7 +39,7 @@ int main()
 void push(int valor)
 {
     //alocar memoria em uma nova célula
-    celula *novo = malloc(sizeof(novo));
+    celula *novo = malloc(sizeof(celula));
 
     //checagem se tem espaço na memoria
     if(novo == NULL)
@@ -80,5 +80,29 @@ void imprimir()
     }
 
     printf("NULL\n");
+}
 
+void pop()
+{
+    //verificar se a pilha está vazia
+    if(top == NULL)
+    {
+        printf("Pilha esta vazia");
+        return;
+    }
+
+    //criar um ponteiro temporário para guardar o nó do topo e liberá-lo
+    celula *temp = top;
+
+    //guardar o dado que vai ser retornado
+    int dadoRemovido = temp->dado;
+
+    //mover a ancora do topo para baixo
+    top = top->prox;
+
+    //liberar a memoria do nó que foi removido
+    free(temp);
+
+    //retornar o dado guardado
+    return dadoRemovido;
 }
