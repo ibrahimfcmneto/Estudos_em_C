@@ -116,5 +116,18 @@ void imprimir_todos_itens_da_lista(Lista_simples l)
 
 void free_lista_simples (Lista_simples* l)
 {
-    
+    Ptr_de_no_de_lista_simples atual = l->primeiro;
+
+    //variavel temporária
+    Ptr_de_no_de_lista_simples proximo_no;
+
+    while(atual != NULL)
+    {
+        
+        free(atual->informacao);
+        proximo_no = atual->proximo;
+        free(atual);
+        atual = proximo_no;
+    }
+    l->primeiro = NULL;
 }
