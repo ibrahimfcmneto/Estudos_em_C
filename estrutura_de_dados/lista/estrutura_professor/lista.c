@@ -1,4 +1,4 @@
-//arquivo onde tem as funções com as lógicas
+//arquivo onde tem todas as funções com as lógicas
 
 #include <main.c>
 #include <lista_simples.h>
@@ -130,4 +130,25 @@ void free_lista_simples (Lista_simples* l)
         atual = proximo_no;
     }
     l->primeiro = NULL;
+}
+
+boolean busca_inteiro_na_lista(Lista_simples l, int valor_procurado)
+{
+    Ptr_de_no_de_lista_simples atual = l.primeiro;
+    
+
+    boolean achou_valor = false;
+
+    while(atual->informacao != NULL)
+    {
+        if (*((int*)(atual->informacao)) == valor_procurado)
+        {
+            achou_valor = true;
+            return achou_valor;
+        }
+
+        atual = atual->proximo;
+    }
+
+    return achou_valor;
 }
