@@ -152,3 +152,37 @@ boolean busca_inteiro_na_lista(Lista_simples l, int valor_procurado)
 
     return achou_valor;
 }
+
+boolean listas_sao_iguais(Lista_simples l1, Lista_simples l2)
+{
+    Ptr_de_no_de_lista_simples atual1 = l1.primeiro;
+    Ptr_de_no_de_lista_simples atual2 = l2.primeiro;
+    
+    boolean lista_iguais = true;
+    //comparar a quantidade de elementos
+    int qtd_elementos_l1 = quantos_elementos(l1);
+    int qtd_elementos_l2 = quantos_elementos(l2);
+
+    if(qtd_elementos_l1 != qtd_elementos_l2)
+    {
+        lista_iguais = false;
+        return lista_iguais;
+    }
+
+    //comparar elemento por elemento
+    while(atual1 != NULL)
+    {
+        if (*((int*)(atual1->informacao)) != *((int*)(atual2->informacao)))
+        {
+            lista_iguais = false;
+            return lista_iguais;
+        }
+
+        //passo para pular para o próximo
+        atual1 = atual1->proximo;
+        atual2 = atual2->proximo;
+    }
+
+    return lista_iguais;
+
+}
