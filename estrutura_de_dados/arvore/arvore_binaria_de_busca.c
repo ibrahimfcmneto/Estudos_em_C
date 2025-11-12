@@ -1,5 +1,5 @@
 //teoria:
-//cada nó é uma caixinha que guarda a informação (Elemento)
+//cada nó é uma caixinha que guarda a informação (Elemento) 
 //e dois ponteiros, um para o filho da esquerda e outro para o da direita.
 
 #include <stdio.h>
@@ -155,9 +155,17 @@ unsigned int quantas_info_tem_na_arvore_binaria_de_busca (Arvore_binaria_de_busc
 
 void print_pre_ordem (Arvore_binaria_de_busca* a) // nao precisava passar a arvore por referencia; foi só pão-durismo
 {
-    if (a->raiz==NULL) return;
+    //Em resumo, a ordem de execução é:
+    //Visita o nó atual (imprime o valor da raiz);
+    //Percorre a subárvore esquerda;
+    //Percorre a subárvore direita.
 
-    *(a->mostra)(a->raiz->informacao);
+    //Essa é exatamente a definição do percurso em pré-ordem:
+    //Raiz → Esquerda → Direita
+
+    if (a->raiz==NULL) return;//se a raiz for nula retorna;
+
+    *(a->mostra)(a->raiz->informacao);//imprime o valor da raiz
     printf(" ");
 
     Ptr_de_no_de_arvore_binaria_de_busca bkp_raiz=a->raiz;
