@@ -41,9 +41,14 @@ void insira_no_final_da_lista_simples (Lista_simples* l, Elemento_de_lista_simpl
 
 boolean remova_do_inicio_da_lista_simples (Lista_simples* l)
 {
+    //lógica = tirar o "cabo" do primeiro elemento e conectar no segundo
+    //verifica se o primeiro é nulo;
     if (l->primeiro==NULL) return false;
 
+    //a_remover está apontando para o primeiro elemento da lista
     Ptr_de_no_de_lista_simples a_remover = l->primeiro;
+    
+    //o primeiro vira o próximo do primeiro
     l->primeiro = l->primeiro->proximo;
     free(a_remover->informacao);
     free(a_remover);
