@@ -1,3 +1,7 @@
+//teoria:
+//cada nó é uma caixinha que guarda a informação (Elemento)
+//e dois ponteiros, um para o filho da esquerda e outro para o da direita.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
