@@ -1,65 +1,109 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include "pilha.h"
 
-typedef struct lista
+boolean nova_pilha (Pilha* p, unsigned int capacidade)
 {
-    int dado;
-    struct lista *prox;
-}celula;
+    if (capacidade<=0) return false;
 
+    // (*p).capacidade=capacidade;
+    p->capacidade=capacidade;
 
-void push(int item);
-void imprimir();
-void pop();
+    // (*p).vetor=(ElementoDePilha*)malloc(capacidade*sizeof(ElementoDePilha));
+    p->vetor=(ElementoDePilha*)malloc(capacidade*sizeof(ElementoDePilha));
 
-celula *top = NULL;
+    //(*p).qtd_atual=0;
+    p->qtd_atual=0;
 
-
-int main()
-{
-    int n, opcao;
-    do
-    {
-         printf("Escolha uma opcao\n1) Empilhar\n 2) Desempilhar\n 3) Imprimir\n 0) Sair");
-         printf("\nOpcao escolhida: ");
-         scanf("%d", &opcao);
-         switch(opcao)
-         {
-            case 1:
-                printf("Entre com um valor a ser empilhado");
-                scanf("%d", &n);
-                push(n);
-                break;
-
-            case 2:
-                pop();
-                break;
-
-            case 3:
-                imprimir();
-                break;
-         }
-    } while (opcao != 0);
-    
-
-    return 0;
+    return true;
 }
 
-void push(int item)
+boolean guarde_na_pilha (Pilha* p, ElementoDePilha e)
 {
-    printf("-----EMPILHANDO-----");
+    //if ((*p).qtd_atual==(*p).capacidade) return false;
+    if (p->qtd_atual==p->capacidade) return false;
 
-    celula *novo = malloc(sizeof(celula));
+    //(*p).vetor[(*p).qtd_atual]=e;
+    p->vetor[p->qtd_atual]=e;
 
-    if(novo == NULL)
+    //(*p).qtd_atual++;
+    p->qtd_atual++;
+
+    return true;
+}
+
+boolean recupere_da_pilha (Pilha p, ElementoDePilha* e)
+{
+    if (p.qtd_atual==0) return false;
+
+    *e=p.vetor[p.qtd_atual-1];
+    return true;
+}
+
+boolean remova_elemento_da_pilha (Pilha* p)
+{
+    //if ((*p).qtd_atual==0) return false;
+    if (p->qtd_atual==0) return false;
+
+    //(*p).qtd_atual--;
+    p->qtd_atual--;
+
+    //(*p).vetor[(*p).qtd_atual]=NULL;
+    p->vetor[p->qtd_atual]=NULL;
+	
+    return true;
+}
+
+boolean pilha_cheia (Pilha p)
+{
+    /*
+    if (p.qtd_atual==p.capacidade)
+        return true;
+    else
+        return false;
+    */
+    return p.qtd_atual==p.capacidade;
+}
+
+boolean pilha_vazia (Pilha p)
+{
+    /*
+    if (p.qtd_atual==0)
+        return true;
+    else
+        return false;
+    */
+    return p.qtd_atual==0;
+}
+
+boolean free_pilha (Pilha* p)
+{
+    if (p->vetor==NULL) return false;
+    /*
+    //for (int i=0; i<(*p).qtd_atual; i++)
+    for (int i=0; i<p->qtd_atual; i++)
     {
-        printf("Erro ao alocar memoria!");
-        return;
+        //(*p).qtd_atual--;
+        p->qtd_atual--;
+        //free((*p).vetor[(*p).qtd_atual]);
+        free(p->vetor[p->qtd_atual]);
+        //(*p).vetor[(*p).qtd_atual]=NULL;
+        p->vetor[p->qtd_atual]=NULL;
+    }
+    */
+
+    //for (int i=0; i<(*p).qtd_atual; i++)
+    for (int i=0; i<p->qtd_atual; i++)
+    {
+        //free((*p).vetor[--((*p).qtd_atual)]);
+        free(p->vetor[--(p->qtd_atual)]);
+        //(*p).vetor[(*p).qtd_atual]=NULL;
+        p->vetor[p->qtd_atual]=NULL;
     }
 
-    novo->dado = item;
-    novo->prox = top;
-    top = novo;
-    printf("\nValor %d empilhado", novo->dado);
-    printf("-----------------------\n");
+    //free((*p).vetor);
+    free(p->vetor);
+    //(*p).vetor=NULL;
+    p->vetor=NULL;
+
+    return true;
 }
