@@ -4,32 +4,39 @@
 #include <time.h>
 #include "arvore_binaria_de_busca.h"
 
-//tirar os elemento da árvore e colocá-los em um vetor destino
-void descarregador_de_arvore(Arvore_binaria_de_busca* a, int* vetor_destino)
-{
-    int qtd_elementos = quantas_info_tem_na_arvore_binaria_de_busca(a);
 
-    if(qtd_elementos == 0)
+//tirar os elemento da árvore e colocá-los em um vetor destino
+static void descarregar_recursivo(Ptr_de_no_de_arvore_binaria_de_busca no, int* vetor_destino, int* indice_atual)
+{
+
+    //verificar se o ponteiro atual é nulo
+    if(no == NULL)
     {
-        printf("árvore vazia");
         return;
     }
 
-    //alocar memoria para o vetor de destino com a quantidade
-    //de elementos que tem na árvore
-    vetor_destino = (int*)malloc(qtd_elementos * sizeof(int));
+    //passo 1: ir para esquerda
+    descarregar_recursivo(no->esquerda, vetor_destino, indice_atual);
 
-    //criar uma ponteiro temporário para passar da árvore para o vetor
-    int* ptr_temporario;
+    //passo 2: caso o ptr_tual seja NULL, vai entrar na condição e vai retornar
+    //dessa forma vai voltar para o elemento central;
+    //pegar a informação do elemento central e colocar no vetor
+    int valor_da_plataforma = *(int*)(no->informacao);
 
-    while(qtd_elementos != 0)
-    {
-    //remover o elemento da árvore e colocar no ponteiro
-    remova_da_arvore_binaria_de_busca(a, &ptr_temporario);
+    //salva o valor no vetor na posição certa
+    vetor_destino[*indice_atual] = valor_da_plataforma;
 
-    //
+    //avançar o índice
+    *indice_atual = *indice_atual + 1;
 
-    }
+    //passo 3: depois de ter adicionado o elemento central no vetor,
+    //ir para a direita
+    descarregar_recursivo(no->direita, vetor_destino, indice_atual);
+}
 
+void descarregar_arvore_em_vetor(Arvore_binaria_de_busca* a, int*vetor_destino)
+{
+    int indice = 0;
 
+    descarregar_recursivo(a->raiz, vetor_destino, &indice);
 }
